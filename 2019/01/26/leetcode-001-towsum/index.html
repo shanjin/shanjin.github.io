@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1. 两数之和给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例:123给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]">
+<meta name="description" content="两数之和 1. 题目给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例:123给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 2. 解 首">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_001_towsum">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/leetcode-001-towsum/index.html">
 <meta property="og:site_name" content="ShanJin&#39;s Blog">
-<meta property="og:description" content="1. 两数之和给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例:123给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]">
+<meta property="og:description" content="两数之和 1. 题目给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例:123给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 2. 解 首">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-26T14:47:29.107Z">
+<meta property="og:updated_time" content="2019-01-26T15:46:12.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_001_towsum">
-<meta name="twitter:description" content="1. 两数之和给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例:123给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]">
+<meta name="twitter:description" content="两数之和 1. 题目给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例:123给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 2. 解 首">
 
 
 
@@ -299,9 +299,19 @@
       
 
       
-        <h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h1><p>给定一个整数数组<code>nums</code>和一个目标值<code>target</code>，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。</p>
+        <h1 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h1><hr>
+<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h2><p>给定一个整数数组<code>nums</code>和一个目标值<code>target</code>，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。</p>
 <p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
 <p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [2, 7, 11, 15], target = 9</span><br><span class="line">因为 nums[0] + nums[1] = 2 + 7 = 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-解"><a href="#2-解" class="headerlink" title="2. 解"></a>2. 解</h2><ul>
+<li>首先想到用两个for循环，依次相加，判断等于target时返回index。但是这种方法存在重复计算的问题。这种思路是找A + B = target中的A和B两个数。</li>
+</ul>
+<hr>
+<h4 id="换一种思路，从找两个数（A和B）转换为找一个数（B）："><a href="#换一种思路，从找两个数（A和B）转换为找一个数（B）：" class="headerlink" title="换一种思路，从找两个数（A和B）转换为找一个数（B）："></a>换一种思路，从找两个数（A和B）转换为找一个数（B）：</h4><hr>
+<ul>
+<li>用一个for循环遍历数组中的元素，拿到A，那么B肯定也在数组中，并且target - A = B。此时给一个字典，key存target - A也就是B，value存index（这个index是A的）。在字典中找B。这样计算结果就保存在字典中，只需要计算一次即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">在遍历数组的过程中：</span><br><span class="line"></span><br><span class="line">如果当前元素（A）不在字典中：kay存target - A（即B），value存A的index；</span><br><span class="line"></span><br><span class="line">如果当前元素在字典中：那么就找到了B，返回当前元素（B）的index和字典中key为B的value，这个value是A的index。</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def twoSum(self, nums, target):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        dict_diff = &#123;&#125;</span><br><span class="line">        for index in range(len(nums)):</span><br><span class="line">            if nums[index] in dict_diff:</span><br><span class="line">                return [dict_diff[nums[index]], index]</span><br><span class="line">            else:</span><br><span class="line">                dict_diff[target - nums[index]] = index</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -432,7 +442,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-两数之和"><span class="nav-number">1.</span> <span class="nav-text">1. 两数之和</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#两数之和"><span class="nav-number">1.</span> <span class="nav-text">两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-题目"><span class="nav-number">1.1.</span> <span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-解"><span class="nav-number">1.2.</span> <span class="nav-text">2. 解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#换一种思路，从找两个数（A和B）转换为找一个数（B）："><span class="nav-number">1.2.0.1.</span> <span class="nav-text">换一种思路，从找两个数（A和B）转换为找一个数（B）：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
