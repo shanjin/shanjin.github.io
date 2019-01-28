@@ -300,15 +300,18 @@
       
         
           
-            <h1 id="leetcode-004-Median-of-Two-Sorted-Arrays-寻找两个有序数组的中位数"><a href="#leetcode-004-Median-of-Two-Sorted-Arrays-寻找两个有序数组的中位数" class="headerlink" title="leetcode-004-Median-of-Two-Sorted-Arrays 寻找两个有序数组的中位数"></a>leetcode-004-Median-of-Two-Sorted-Arrays 寻找两个有序数组的中位数</h1><hr>
-<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h2><p>给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。</p>
-<p>请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。</p>
-<p>你可以假设 nums1 和 nums2 不会同时为空。</p>
-<p>示例 1:<br>nums1 = [1, 3]<br>nums2 = [2]<br>则中位数是 2.0</p>
-<p>示例 2:<br>nums1 = [1, 2]<br>nums2 = [3, 4]<br>则中位数是 (2 + 3)/2 = 2.5</p>
-<h2 id="2-解"><a href="#2-解" class="headerlink" title="2. 解"></a>2. 解</h2><p>暴力解法：把两个有序数组排序为一个有序数组，判断数组长度是奇数还是偶数， 然后返回中位数。这种解法的时间复杂度是O(m+n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def findMedianSortedArrays(self, nums1, nums2):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums1: List[int]</span><br><span class="line">        :type nums2: List[int]</span><br><span class="line">        :rtype: float</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        nums = []</span><br><span class="line">        i,j = 0,0</span><br><span class="line">        for k in range(len(nums1) + len(nums2)):</span><br><span class="line">            if (i &lt; len(nums1)) &amp; (j &lt; len(nums2)):</span><br><span class="line">                if nums1[i] &lt; nums2[j]:</span><br><span class="line">                    nums.append(nums1[i])</span><br><span class="line">                    i += 1</span><br><span class="line">                else:</span><br><span class="line">                    nums.append(nums2[j])</span><br><span class="line">                    j += 1</span><br><span class="line">            elif i &lt; len(nums1):</span><br><span class="line">                nums.append(nums1[i])</span><br><span class="line">                i += 1</span><br><span class="line">            elif j &lt; len(nums2):</span><br><span class="line">                nums.append(nums2[j])</span><br><span class="line">                j += 1</span><br><span class="line">        if(len(nums)%2):</span><br><span class="line">            return float(nums[len(nums)//2])</span><br><span class="line">        else:</span><br><span class="line">            return (nums[len(nums)//2 - 1] + nums[len(nums)//2])/float(2)</span><br></pre></td></tr></table></figure></p>
-
-          
+          leetcode-004-Median-of-Two-Sorted-Arrays 寻找两个有序数组的中位数
+1. 题目给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+你可以假设 nums1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/28/leetcode-004-Median-of-Two-Sorted-Arrays/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -426,21 +429,18 @@
       
         
           
-            <h1 id="leetcode-001-towsum-两数之和"><a href="#leetcode-001-towsum-两数之和" class="headerlink" title="leetcode-001-towsum 两数之和"></a>leetcode-001-towsum 两数之和</h1><hr>
-<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h2><p>给定一个整数数组<code>nums</code>和一个目标值<code>target</code>，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [2, 7, 11, 15], target = 9</span><br><span class="line">因为 nums[0] + nums[1] = 2 + 7 = 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-解"><a href="#2-解" class="headerlink" title="2. 解"></a>2. 解</h2><ul>
-<li>首先想到用两个for循环，依次相加，判断等于target时返回index。但是这种方法存在重复计算的问题。这种思路是找A + B = target中的A和B两个数。</li>
-</ul>
-<hr>
-<h4 id="换一种思路，从找两个数（A和B）转换为找一个数（B）："><a href="#换一种思路，从找两个数（A和B）转换为找一个数（B）：" class="headerlink" title="换一种思路，从找两个数（A和B）转换为找一个数（B）："></a>换一种思路，从找两个数（A和B）转换为找一个数（B）：</h4><hr>
-<ul>
-<li>用一个for循环遍历数组中的元素，拿到A，那么B肯定也在数组中，并且target - A = B。此时给一个字典，key存target - A也就是B，value存index（这个index是A的）。在字典中找B。这样计算结果就保存在字典中，只需要计算一次即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">在遍历数组的过程中：</span><br><span class="line"></span><br><span class="line">如果当前元素（A）不在字典中：kay存target - A（即B），value存A的index；</span><br><span class="line"></span><br><span class="line">如果当前元素在字典中：那么就找到了B，返回当前元素（B）的index和字典中key为B的value，这个value是A的index。</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def twoSum(self, nums, target):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        dict_diff = &#123;&#125;</span><br><span class="line">        for index in range(len(nums)):</span><br><span class="line">            if nums[index] in dict_diff:</span><br><span class="line">                return [dict_diff[nums[index]], index]</span><br><span class="line">            else:</span><br><span class="line">                dict_diff[target - nums[index]] = index</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
+          leetcode-001-towsum 两数之和
+1. 题目给定一个整数数组nums和一个目标值target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+示例:123给定 nums = [2, 7,
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/26/leetcode-001-towsum/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
