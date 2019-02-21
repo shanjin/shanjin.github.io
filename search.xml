@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode-020-Valid-Parentheses]]></title>
+    <url>%2F2019%2F02%2F21%2Fleetcode-020-Valid-Parentheses%2F</url>
+    <content type="text"><![CDATA[1. ��Ŀ����һ��ֻ���� ‘(‘��’)’��’{‘��’}’��’[‘��’]’ ���ַ������ж��ַ����Ƿ���Ч�� ��Ч�ַ��������㣺 �����ű�������ͬ���͵������űպϡ������ű�������ȷ��˳��պϡ�ע����ַ����ɱ���Ϊ����Ч�ַ����� ʾ�� 1: ����: “()”���: trueʾ�� 2: ����: “()[]{}”���: trueʾ�� 3: ����: “(]”���: falseʾ�� 4: ����: “([)]”���: falseʾ�� 5: ����: “{[]}”���: true 2. ��123456789101112131415161718192021222324class Solution(object): def isValid(self, s): &quot;&quot;&quot; :type s: str :rtype: bool &quot;&quot;&quot; stack = [] # �������ֵ����ƺ����� paren_map = &#123;&apos;)&apos;:&apos;(&apos;, &apos;]&apos;:&apos;[&apos;, &apos;&#125;&apos;:&apos;&#123;&apos;&#125; for c in s: # ������������ţ��������ţ������������ջ if c not in paren_map: stack.append(c) # ��������˵���������ţ���ʱ����������� # 1.ջ�գ���������֮ǰ���ַ���������ƥ�䣬��ʱջ�գ���������ջ��false # 2.ջ���գ�����������ջ���������Ų�ƥ�� elif not stack or paren_map[c] != stack.pop(): return False # ��������������ַ���ĩ���ж���������ţ�û����������֮ƥ�� # ��ʱջ�д�Ķ��������ţ�false return not stack]]></content>
+      <categories>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>Stack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode-025-Reverse-Nodes-in-k-Group]]></title>
     <url>%2F2019%2F02%2F11%2Fleetcode-025-Reverse-Nodes-in-k-Group%2F</url>
     <content type="text"><![CDATA[1. 题目给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 :给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5 说明 :你的算法只能使用常数的额外空间。你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。 2. 解1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def reverseKGroup(self, head, k): &quot;&quot;&quot; :type head: ListNode :type k: int :rtype: ListNode &quot;&quot;&quot; # k=1时为原链表 if k == 1: return head # c遍历链表，为当前结点 c = head # 用tot算出总节点数，知道什么时候该停止 tot = 0 p = head while p: p = p.next tot += 1 # cnt表示目前为止一共reverse了几个节点 cnt = 0 #从头部开始遍历 while c: #判断翻转K个是否越界 if cnt + k &lt;= tot: #分情况讨论，如果是第一次reverse，那么直接返回原始链表的head if cnt == 0: # 这里需要注意的是，第一次反转，记得使用原始链表的头结点head head = self.reverse(c,k) cnt += k else: # 如果不是第一次反转 # 这里有个巧妙的地方，当我们进行完第一次后，c指向第一个reverse区间的最后一个节点 # 所以需要反转c.next为头的子链表 # 这里用临时的头结点head_k替代c遍历链表 head_k = c.next # 用临时的新头结点指向反转好的子链表 new_head = self.reverse(head_k,k) cnt += k # 将之前的链表和反转好的子链表接起来 c.next = new_head # 反转结束后，临时的头结点head_k指向子链表的末尾，重置c的位置 c = head_k #越界就说明我们已经reverse了能reverse的部分，直接退出 else: break return head # 206反转链表（代码思路一模一样）# 需要注意的是，N个结点的需要反转N-1次 def reverse(self,head_k,k): #记录目前reverse的数量 count = 1 new_head = head_k while count &lt; k: t = head_k.next head_k.next = head_k.next.next t.next = new_head new_head = t count += 1 return new_head]]></content>
