@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode-703-Kth-Largest-Element-in-a-Stream]]></title>
+    <url>%2F2019%2F02%2F21%2Fleetcode-703-Kth-Largest-Element-in-a-Stream%2F</url>
+    <content type="text"><![CDATA[1. 题目设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。 你的 KthLargest 类需要一个同时接收整数 k 和整数数组nums 的构造器，它包含数据流中的初始元素。每次调用 KthLargest.add，返回当前数据流中第K大的元素。 示例: int k = 3;int[] arr = [4,5,8,2];KthLargest kthLargest = new KthLargest(3, arr);kthLargest.add(3); // returns 4kthLargest.add(5); // returns 5kthLargest.add(10); // returns 5kthLargest.add(9); // returns 8kthLargest.add(4); // returns 8说明:你可以假设 nums 的长度≥ k-1 且k ≥ 1。 2. 解123456789101112131415161718192021222324252627class KthLargest(object): def __init__(self, k, nums): &quot;&quot;&quot; :type k: int :type nums: List[int] &quot;&quot;&quot; self.k = k self.nums = nums heapq.heapify(self.nums) while len(self.nums) &gt; self.k: heapq.heappop(self.nums) def add(self, val): &quot;&quot;&quot; :type val: int :rtype: int &quot;&quot;&quot; if self.k &gt; len(self.nums): heapq.heappush(self.nums,val) else: heapq.heappushpop(self.nums,val) return self.nums[0] # Your KthLargest object will be instantiated and called as such:# obj = KthLargest(k, nums)# param_1 = obj.add(val) 这里用到了堆数据结构（Heap）1234567891011# 将已知的 list 转化为 heap 对象，默认为小顶堆heapq.heapify(list)# 将 item 压入 heapheapq.heappush(heap,item)# 弹出 heap 中最小的值，即为树的根节点heapq.heappop(heap)# 将 item 压入 heap，弹出最小值，并重新排序堆结构heapq.heappushpop(item)]]></content>
+      <categories>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>Heap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode-020-Valid-Parentheses]]></title>
     <url>%2F2019%2F02%2F21%2Fleetcode-020-Valid-Parentheses%2F</url>
     <content type="text"><![CDATA[1. 题目给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。 有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。注意空字符串可被认为是有效字符串。 示例 1: 输入: “()”输出: true示例 2: 输入: “()[]{}”输出: true示例 3: 输入: “(]”输出: false示例 4: 输入: “([)]”输出: false示例 5: 输入: “{[]}”输出: true 2. 解123456789101112131415161718192021222324class Solution(object): def isValid(self, s): &quot;&quot;&quot; :type s: str :rtype: bool &quot;&quot;&quot; stack = [] # 这里用字典的设计很巧妙 paren_map = &#123;&apos;)&apos;:&apos;(&apos;, &apos;]&apos;:&apos;[&apos;, &apos;&#125;&apos;:&apos;&#123;&apos;&#125; for c in s: # 如果不是右括号（是左括号），则此括号入栈 if c not in paren_map: stack.append(c) # 来到这里说明是右括号，这时有两种情况： # 1.栈空：此右括号之前的字符串都可以匹配，此时栈空，右括号入栈，false # 2.栈不空：此右括号与栈顶的左括号不匹配 elif not stack or paren_map[c] != stack.pop(): return False # 如果遍历结束，字符串末端有多余的左括号，没有右括号与之匹配 # 此时栈中存的都是左括号，false return not stack]]></content>
