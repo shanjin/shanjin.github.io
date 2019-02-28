@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode-120-Triangle]]></title>
+    <url>%2F2019%2F02%2F28%2Fleetcode-120-Triangle%2F</url>
+    <content type="text"><![CDATA[1.题目给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。 例如，给定三角形： [ [2], [3,4], [6,5,7], [4,1,8,3]]自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。 说明： 如果你可以只使用 O(n) 的额外空间（n 为三角形的总行数）来解决这个问题，那么你的算法会很加分。 2.解1234567891011121314151617class Solution(object): def minimumTotal(self, triangle): &quot;&quot;&quot; :type triangle: List[List[int]] :rtype: int &quot;&quot;&quot; if not triangle: return 0 # 动态规划：自底向上的递推 # 初始化状态是三角形的倒数第一行 res = triangle[-1] # 从三角形的倒数第二行开始递推 # 注意：Python的range函数是[)左闭右开的 for i in xrange(len(triangle)-2,-1,-1): for j in xrange(len(triangle[i])): res[j] = triangle[i][j] + min(res[j],res[j+1]) return res[0]]]></content>
+      <categories>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode-070-Climbing-Stairs]]></title>
+    <url>%2F2019%2F02%2F28%2Fleetcode-070-Climbing-Stairs%2F</url>
+    <content type="text"><![CDATA[1.题目假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。 示例 1： 输入： 2输出： 2解释： 有两种方法可以爬到楼顶。 1 阶 + 1 阶 2 阶示例 2： 输入： 3输出： 3解释： 有三种方法可以爬到楼顶。 1 阶 + 1 阶 + 1 阶 1 阶 + 2 阶 2 阶 + 1 阶 2.解类似斐波那契数列12345678910111213141516class Solution(object): def climbStairs(self, n): &quot;&quot;&quot; :type n: int :rtype: int &quot;&quot;&quot; if n == 0 or n == 1 or n ==2: return n a = 1 b = 2 while n &gt; 2: res = a + b a = b b = res n -= 1 return res]]></content>
+      <categories>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode-050-Pow]]></title>
+    <url>%2F2019%2F02%2F28%2Fleetcode-050-Pow%2F</url>
+    <content type="text"><![CDATA[1. 题目实现 pow(x, n) ，即计算 x 的 n 次幂函数。 示例 1: 输入: 2.00000, 10输出: 1024.00000示例 2: 输入: 2.10000, 3输出: 9.26100示例 3: 输入: 2.00000, -2输出: 0.25000解释: 2-2 = 1/22 = 1/4 = 0.25说明: -100.0 &lt; x &lt; 100.0n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。 2.解递归解法：12345678910111213141516171819class Solution(object): def myPow(self, x, n): &quot;&quot;&quot; :type x: float :type n: int :rtype: float &quot;&quot;&quot; if n == 0: return 1 if n &lt; 0: return 1 / self.myPow(x,-n) # 分治法 # 这是一个倒三角的计算过程 # 顶层为所有的x，两两相乘之后的结果下降一层，这时x的n次方就转换为(x*x)的n/2次方 # n分为奇数和偶数的情况 if n % 2 == 1: return x * self.myPow(x,n-1) else: return self.myPow(x*x,n/2) 非递归解法：12345678910111213141516171819202122232425262728class Solution(object): def myPow(self, x, n): &quot;&quot;&quot; :type x: float :type n: int :rtype: float &quot;&quot;&quot; flag = 1 if n &lt; 0: flag = 0 n = -n res = 1 # 思路和递归的是一样的，用n次方作为循环的条件 # n为奇数时，n = n-1 # n为偶数时，n = n/2 # 不论初始的n是奇数还是偶数，最终都会停止在n=1上， # 所以在所有满足n%2=1的时候，都用res去乘，res会记录最终的值 while n: if n % 2 == 1: res = res * x n = n-1 else: x = x*x n = n/2 if flag == 1: return res else: return 1 / res]]></content>
+      <categories>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>recursion</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode-239-Sliding-Window-Maximun]]></title>
     <url>%2F2019%2F02%2F23%2Fleetcode-239-Sliding-Window-Maximun%2F</url>
     <content type="text"><![CDATA[1. 题目给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口 k 内的数字。滑动窗口每次只向右移动一位。 返回滑动窗口最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3输出: [3,3,5,5,6,7]解释: 滑动窗口的位置 最大值 [1 3 -1] -3 5 3 6 7 3 1 [3 -1 -3] 5 3 6 7 3 1 3 [-1 -3 5] 3 6 7 5 1 3 -1 [-3 5 3] 6 7 5 1 3 -1 -3 [5 3 6] 7 6 1 3 -1 -3 5 [3 6 7] 7注意： 你可以假设 k 总是有效的，1 ≤ k ≤ 输入数组的大小，且输入数组不为空。 进阶： 你能在线性时间复杂度内解决此题吗？ 2. 解1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465class Solution(object): def maxSlidingWindow(self, nums, k): &quot;&quot;&quot; :type nums: List[int] :type k: int :rtype: List[int] &quot;&quot;&quot; # 滑窗使用双端队列(deque)数据结构，且只存下标 # 这个队列中，队首为最大元素的下标，之后的元素都比队首小 window = [] # 存每一个滑窗中的最大值，最后返回 res = [] # 检验参数是否有非法情况 if k &gt; len(nums) or len(nums) == 0 or k == 0: return res for i in range(len(nums)): # step1：滑窗移动 # 使用下标控制滑窗范围 # 滑窗移动一格，导致队首元素从滑窗离开，则从deque的头部出队 # 注意: 1 window存的是下标； # 2 i为待进队的元素下标； # 3 待进队元素，在满足所有逻辑判断条件之后，才进队 # i-k是window左界：0 window[1 2 3] 4,此时i=4,k=3 # window移动一格后为 0 1 window[2 3 4]，即window[0]出队，腾出空间给4进队 if len(window) &gt; 0 and window[0] &lt;= i - k: window.pop(0) # step2：维护deque # 只要deque中有比待入队元素小的值，则从队尾移除 # 即，deque中，只保存可能是最大值的下标 while len(window) &gt; 0 and nums[i] &gt; nums[window[-1]]: window.pop() # 满足逻辑判断之后，新元素下标入队 window.append(i) # 弹出滑窗中最大的元素 if i &gt;= k - 1: res.append(nums[window[0]]) return res class Solution(object): def maxSlidingWindow(self, nums, k): &quot;&quot;&quot; :type nums: List[int] :type k: int :rtype: List[int] &quot;&quot;&quot; res = [] if len(nums) == 0 or k == 0 or k &gt; len(nums): return res for i in range(len(nums)): if i+k &lt;= len(nums): res.append(max(nums[i:i+k])) return res]]></content>
